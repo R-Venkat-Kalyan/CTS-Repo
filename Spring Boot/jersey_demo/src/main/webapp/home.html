@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <header class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold">My Website</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="#" class="hover:underline">Home</a></li>
+                    <li><a href="#about" class="hover:underline">About Us</a></li>
+                    <li><a href="#services" class="hover:underline">Services</a></li>
+                    <li><a href="#contact" class="hover:underline">Contact Us</a></li>
+					<li><a href="/login" class="hover:underline">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container mx-auto p-4">
+        <section id="about" class="my-8">
+            <h2 class="text-2xl font-semibold mb-4">About Us</h2>
+            <p class="mb-4">This is a simple home page created using Tailwind CSS. Tailwind CSS is a utility-first CSS framework for rapidly building custom user interfaces.</p>
+            <p>Feel free to explore and customize this template to suit your needs.</p>
+        </section>
+        <section id="services" class="my-8">
+            <h2 class="text-2xl font-semibold mb-4">Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-bold mb-2">Service 1</h3>
+                    <p>Details about Service 1.</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-bold mb-2">Service 2</h3>
+                    <p>Details about Service 2.</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="text-xl font-bold mb-2">Service 3</h3>
+                    <p>Details about Service 3.</p>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="my-8">
+            <h2 class="text-2xl font-semibold mb-4">Contact Us</h2>
+            <form class="bg-white p-4 rounded shadow">
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                    <textarea id="message" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+                </div>
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Submit</button>
+            </form>
+        </section>
+    </main>
+    <footer class="bg-gray-800 text-white p-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 My Website. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

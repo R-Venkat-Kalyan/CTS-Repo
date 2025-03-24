@@ -1,0 +1,148 @@
+
+
+
+
+
+
+1. Claim Update: Enter Claim Details
+Objective: Allow claim adjusters to enter claim details for a claimant.
+
+Steps:
+
+Adjuster logs in.
+Clicks on 'Create Claim'.
+Fills in mandatory fields (Claimant Name, Policy Number, Date of Birth, Date of Loss, Loss Description, Account Line, Supporting Document).
+Preview details.
+Optionally add comments.
+Save as draft or submit the claim.
+Display success messages and update claim status.
+Implementation:
+
+Create operator IDs and associate a portal for Claim Adjusters.
+Define the Claim Adjuster dashboard.
+Create a case type for submitting claims with a 'Submission' stage.
+Build sections for fields and buttons ('Save as draft', 'Submit claim').
+Use Pega's out-of-the-box section for attachments.
+Set confirmation notes and case status.
+2. Claim Update: Update Claim Details
+Objective: Allow claim adjusters to review and update existing claims.
+
+Steps:
+
+Adjuster logs in.
+Clicks on an existing draft or open claim.
+Dashboard displays draft, open, and closed claims.
+Reviews and updates prepopulated fields.
+Preview details.
+Optionally add comments.
+Submit the claim.
+Display success messages and update claim status.
+Implementation:
+
+Provide links and create new harnesses for each option.
+Create report definitions for draft, open, and closed claims.
+Build sections for fields and buttons ('Save as draft', 'Submit claim').
+Set confirmation notes and case status.
+3. Reserve Processing: Enter Claim Reserve
+Objective: Allow claim adjusters to add reserve amounts for existing claims.
+
+Steps:
+
+Adjuster logs in.
+Clicks on an open claim.
+Reviews prepopulated fields.
+Clicks 'Create reserve' and enters the amount.
+Reenters the amount for confirmation.
+Displays validation messages for mismatches.
+Optionally add comments.
+Submit the reserve.
+Display success messages and update claim status.
+Send email notifications.
+Implementation:
+
+Incorporate logic in the 'Enter Claim Reserve' step under 'Reserve Processing'.
+Build sections for fields and buttons ('Create reserve', 'Submit reserve').
+Use data transforms and when rules for validation.
+Develop correspondence rules for email notifications.
+Set case status.
+4. Reserve Processing: Approve/Reject Claim Reserve
+Objective: Allow managers to approve or reject reserve requests.
+
+Steps:
+
+Manager logs in.
+Clicks on pending reserve approval cases.
+Dashboard displays pending approvals, draft, open, and closed claims.
+Reviews prepopulated fields.
+Approves or rejects the reserve.
+Optionally add comments.
+Update reserve amount in the claim.
+Display success messages and update claim status.
+Send email notifications.
+Implementation:
+
+Create operator IDs and associate a portal for managers.
+Define the manager dashboard.
+Create report definitions for pending approvals.
+Build sections for fields and buttons ('Approve reserve', 'Reject reserve').
+Develop correspondence rules for email notifications.
+Set case status.
+5. Payment Processing: Process Claim Payment
+Objective: Allow claim adjusters to process payment amounts for existing claims.
+
+Steps:
+
+Adjuster logs in.
+Clicks on an open claim.
+Reviews prepopulated fields.
+Clicks 'Create payment' and selects payment type.
+Enters and confirms the payment amount.
+Displays validation messages for mismatches.
+Optionally add comments.
+Submit the payment.
+Display success messages and update claim status.
+Send email notifications.
+Implementation:
+
+Incorporate logic in the 'Process Claim Payment' step under 'Payment Processing'.
+Build sections for fields and buttons ('Create payment', 'Submit payment').
+Use data transforms and when rules for validation.
+Develop correspondence rules for email notifications.
+Set case status.
+6. Payment Processing: Approve/Reject Claim Payment
+Objective: Allow managers to approve or reject payment requests.
+
+Steps:
+
+Manager logs in.
+Clicks on pending payment approval cases.
+Dashboard displays pending approvals, draft, open, and closed claims.
+Reviews prepopulated fields.
+Approves or rejects the payment.
+Optionally add comments.
+Update reserve amount in the claim.
+Display success messages and update claim status.
+Send email notifications.
+Implementation:
+
+Incorporate logic in the 'Approve/Reject Claim Payment' step under 'Payment Processing'.
+Build sections for fields and buttons ('Approve payment', 'Reject payment').
+Develop correspondence rules for email notifications.
+Set case status.
+7. Claim Update: Close Claim
+Objective: Allow claim adjusters to review and close existing claims.
+
+Steps:
+
+Adjuster logs in.
+Clicks on an open claim.
+Reviews and updates prepopulated fields.
+Enters comments and clicks 'Close claim'.
+Confirms closure in a modal pop-up.
+Display success messages and update claim status.
+Implementation:
+
+Incorporate logic in the 'Close Claim' step under 'Resolution'.
+Build sections for fields and buttons ('Close Claim').
+Use modal dialogs for confirmation.
+Set confirmation notes and case status.

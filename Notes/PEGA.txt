@@ -1,0 +1,340 @@
+					PEGA
+					----
+-> Pega is a low code platform that provides an application development environment which allows us to create digital solutions to achieve business outcomes.
+-> Low-code application development can be treated as a type of application development that uses visual, declarative techqiques instead of programming.
+-> Low-code platforms provide us a visual development environment with drag and drop capabilities.
+-> Pega is a well-known Business Process Management (BPM) tool. 
+-> It helps organizations to build applications that captures data and initiates business processes.
+
+
+Studios
+-------
+-> In Pega, studios are role-based authoring workspaces that provides specific tools and features for application development.
+-> Studios are classified into 4 categories:
+	- App Studio: Includes low-code/no-code app development, multi-channel, mobile, and UI features.
+	- Dev Studio: Includes advanced configuration options beyond the features available in App Studio.
+	- Prediction Studio
+	- Admin Studio: Includes DevOps, run-time status, and Cloud features. It is used to monitor system resources.
+
+App Studio:
+-----------
+Definition: A low-code workspace for business users and developers to design applications quickly.
+Example Use Case: A business analyst uses App Studio to create a customer service application with drag-and-drop tools, allowing customer service representatives to track and resolve customer issues efficiently.
+
+Dev Studio:
+-----------
+Definition: An advanced workspace for technical developers to build complex and customized applications.
+Example Use Case: A system architect uses Dev Studio to integrate the customer service application with the company's existing CRM system, adding custom logic and data flows.
+
+Prediction Studio:
+------------------
+Definition: A workspace for data scientists to create and manage predictive models and analytics.
+Example Use Case: A data scientist uses Prediction Studio to develop a model that predicts customer churn, helping the company identify at-risk customers and take proactive measures to retain them.
+
+Admin Studio:
+-------------
+Definition: A workspace for IT administrators to manage and monitor the Pega environment.
+Example Use Case: An IT administrator uses Admin Studio to monitor system performance, manage user access, and ensure the 
+application runs smoothly without any downtime.
+
+
+Constellation design system
+---------------------------
+A design system is a builder kit that includes a shared library of:
+UI elements
+Styles
+UX patterns comprised of components
+Themes
+Guidelines
+
+
+Microjourneys
+------------
+A Microjourney is a small part of the overall customer journey and focuses on accomplishing a specific goal.
+For example, a customer wants to change their address. 
+
+
+Personas and Channels
+---------------------
+Personas determine who interacts with the application.
+Channels determine how a Persona interacts with the application. 
+For example, a Persona is a customer or a company employee, and a Channel is a Web Portal or a chatbot.
+
+
+Data and interfaces
+-------------------
+Data is the information that the Microjourney interacts with to accomplish the customer's goal, 
+and the interface defines where the data comes from or where it is persisted. 
+
+
+Case Types and Cases
+--------------------
+A Case Type is an abstract model of a business transaction. 
+A Case is a specific transaction instance.
+
+
+Case Life Cycle
+---------------
+You define the Case Life Cycle for a Case Type to help you visualize the work that must be completed as part of the desired business transaction. 
+The major building blocks of the Case Life Cycle are Stages, Processes, and Steps:
+
+Stages represent the Case transfer from one caseworker to another or a significant change in the status of the Case. When you design a Case Life Cycle, you begin by organizing work into Stages.
+Processes contain a series of Tasks, or Steps, that users complete as they work on the case. Each Stage can contain one or more Processes.
+A Step within a Process is either a user Action or an automated Action. Automated Actions, also referred to as Automation Steps, are performed by the system.
+
+
+Data Model
+---------
+A data model is a visual representation of all the data 
+elements of an organization and the connections between them.
+
+The main purpose of data model is to define the data 
+that our application requires in order to achieve the
+business outcome.
+
+
+It consists of two main components:
+Fields: Fields represent the individual pieces of data (fn,ln)
+Data Objects: Data Objects represnt the collection of
+related fields (Customer, order)
+
+
+Types of Data Models:
+
+Conceptual Data Model
+---------------------
+It is a high-level representation of data entities and
+relationships. Used at initial stages.
+
+Logical Data Model
+------------------
+It is the refined version of the conceptual model which
+provides details about data objects and fields.
+
+
+Physical Data Model
+-------------------
+It is a implementation-specific model that defines how
+data is stored in the database.
+
+
+Data Records are the instances of data objects that 
+contains a collection of data fields with data in 
+each field.
+
+
+
+Optional Actions Demo
+---------------------
+Case Life Cycle Workflow -> Optional Actions -> Case wide Actions / Stage-only actions
+
+
+Automating decisions
+--------------------
+Automating decisions based on business logic allows application users to focus on decisions that require human expertise.
+
+
+Flow
+----
+Flow is a sequence of events that models a business Process. You create flows to support the different paths that users can take through a Case Life Cycle.
+You can define paths in a flow by using graphical shapes and connectors.
+
+
+List of some common automation shapes
+-------------------------------------
+Attach Content: Attaches a file, URL, or note to a case.
+Change to a Stage: Changes to a specific stage of a case.
+Change to Next Stage: Automatically changes to the next stage of a case.
+Create Case: Creates one or more cases from the current case.
+Create PDF: Creates a PDF file from a specified section and attaches it to the case.
+Generate Document: Generates a document from a Word template and attaches it to the case.
+Persist Case: Converts a temporary case to a permanent object in the database.
+Post to Pulse: Creates a message and sends it to the Pulse social stream.
+Push Notification: Sends a notification to an iOS or Android mobile device to indicate that a case requires user action.
+Run Data Transform: Runs a data transform.
+Send Email: Sends formatted emails to custom recipients.
+Send Notification: Sends a notification to recipients over multiple channels.
+Update a Case: Updates the current case or all child cases and descendants.
+
+
+
+Agile WorkBench
+---------------
+It is a powerful tool within the pega platform that facilitates real-time collaboration and feedback during application development.
+It helps to report and manage bugs, provide feedback directly within the application.
+Using agile workbench we can connect with project management tools like jira, agile studio for enhanced tracking and reporting.
+
+
+Sizing a Pega Platform
+----------------------
+It involves estimating resources, efforts and time required to complete the project.
+It is crucial for planning, budgeting and ensuring successful completion of project on time.
+
+
+Child Cases
+-----------
+Child cases are used to model complex business processes that require multiple related tasks to be handled separately but in parallel.
+Each child case represents a series of steps that must be completed to resolve the parent case.
+
+
+Duplicate Case Identification
+-----------------------------
+It is a process in which we identify a case that is being very similar to another existing case.
+It is done based on two parameters:
+	- Base Condition
+	- Weighted Condition
+
+Base Condition
+A base condition is a basic rule that must be met for a case to be considered a possible duplicate. 
+For example, if two cases have the same email address, they might be flagged as duplicates.
+
+Weighted Conditions
+Weighted conditions are additional rules that help identify duplicates by giving different importance levels to each rule. 
+Each rule gets a score, and if the total score is high enough, the cases are considered duplicates. 
+For example, matching names might get a score of 30, and matching phone numbers might get a score of 50. 
+If the total score is above a certain number, the cases are flagged as duplicates.
+
+
+
+
+Rule & Rule Types
+-----------------
+-> A rule is the basic building block in a pega platform application that define its behaviour.
+-> Each rule is an instance of a Rule Type.
+-> The rule type determines the type of behavior modeled by the rule.
+-> Rules describe the behavior for individual Cases, such as how the user interface is displayed and when work Urgency increases. 
+-> Pega Platform uses the Rules you create to generate application code in the background.
+
+
+
+Automated Rule creation in App Studio
+-------------------------------------
+-> Pega Platform provides a simplified interface that automatically creates and manages the underlying Rules while allowing 
+   developers to focus on business tasks. 
+-> For example, when you configure a Case Type in App Studio, you use the Case Life Cycle and Configuration panels to add Processes, 
+   define Steps, and configure Views. In the background, Pega Platform creates and manages the Rules that define the Process flows, Tasks, and UI.
+
+
+Application modularity with Rules
+---------------------------------
+-> The use of individual Rules makes your application modular.
+-> By describing Case behavior with modular, Task-focused Rules, you can combine and reuse Rules as needed.
+-> For example, you create a Rule to describe the content of a customer email regarding the status of a change of address. 
+-> By creating the email message as a separate Rule, rather than embedding the message in the Case Life Cycle, 
+   you can update the content of the email without impacting the rest of the business process.
+-> This modularity provides three significant benefits: versioning, delegation, and reuse. 
+
+
+Versioning: Developers create a new version of a Rule whenever Case behavior needs to change.
+Delegation: Developers delegate Rules to allow business users to update Case behavior as business conditions change.
+Reuse: 	Developers reuse Rules whenever an application needs to incorporate existing Case behavior.
+
+
+Rulesets
+--------
+A ruleset in Pega is a container that holds a set of rules defining an application or a significant part of it. 
+Think of it like an album that contains multiple songs (rules). 
+Rulesets help in organizing, managing, and reusing rules across different applications.
+
+Ruleset Versioning
+------------------
+Ruleset versioning involves creating different versions of a ruleset to manage changes and updates. 
+Each version is identified by a three-part number (e.g., 01-01-01), representing major, minor, and patch versions. 
+When updates are needed, a new version is created, and older versions are typically locked to prevent further changes.
+
+Ruleset Stack
+-------------
+The ruleset stack is the sequence of rulesets that an application uses. 
+It determines the order in which Pega searches through rulesets to find the applicable rule. 
+Each application has a unique ruleset stack, which includes all the versions of the specified rulesets, 
+starting from the highest version down to the lowest. 
+
+Ruleset Best Practices
+----------------------
+Here are some best practices for managing rulesets in Pega:
+
+Naming Conventions: Use clear and descriptive names for rulesets to make them easily identifiable.
+Version Control: Always lock older versions of rulesets to maintain stability and prevent unauthorized changes.
+Reuse: Create reusable rulesets for common functionalities to save development time and effort.
+Dependencies: Minimize dependencies between rulesets to make them more portable and easier to manage.
+Documentation: Document the purpose and changes in each ruleset version to maintain clarity and facilitate future updates23.
+
+
+Rule Creation
+-------------
+Rule creation in Pega involves defining the logic and behavior of an application. 
+Rules can be anything from decision-making logic to user interface elements. They are the building blocks of a Pega application.
+
+Rule Creation in Dev Studio
+In Dev Studio, you have more control over how rules are created and reused. Here’s a simple process for creating a rule in Dev Studio:
+
+Navigate to Records: Click on the "Records" tab in the navigation menu.
+Select Rule Type: Choose the type of rule you want to create (e.g., flow, data transform, activity).
+New Record Form: Fill out the New Record form with the following information:
+Rule Type: The type of rule you are creating.
+Identifier: A unique name for the rule.
+Class: The class to which the rule applies.
+Ruleset: The ruleset where the rule will be stored.
+Rule Creation Methods
+There are several methods to create rules in Pega, each with varying levels of automation and control:
+
+Create Menu: Use the "Create" menu to start a new rule. This method pre-fills some information based on the context.
+App Explorer: Create a rule from the App Explorer, which also pre-fills more details like the class and ruleset.
+Save As: Open an existing rule and use the "Save As" option to create a new rule with similar properties.
+
+
+Instance key
+Pega Platform creates a unique instance key — stored by using the property .pzInsKey — to identify each Rule on the system. 
+The instance key generally consists of four elements separated by a space:
+
+The internal name for the Rule Type
+The applies to class for the Rule
+The identifier of the Rule
+The timestamp from when the Rule was created, normalized to Greenwich Mean Time (GMT)
+
+
+
+
+Classes
+Within an application, Pega Platform groups Rules into classes according to their capacity for reuse. 
+Each grouping is a class. Each application consists of three class types:
+
+The Work class contains the Rules that describe how to process Cases, such as Processes, data elements, and user interfaces.
+The Integration class contains the Rules that describe how the application interacts with other systems, such as the integration assets that connect the application to an external customer database or a third-party web server.
+The Data class contains the Rules that describe the data types in the application, such as a customer data type or an order items data type.
+
+
+
+Rule Reuse through Inheritance
+Inheritance in Pega allows applications to reuse existing rules, reducing development and testing time while maintaining application quality. 
+There are two main types of inheritance in Pega: pattern inheritance and directed inheritance.
+
+Pattern Inheritance
+Pattern inheritance is automatic and uses the class name structure to determine which rules are available for reuse. 
+It searches for rules in classes that share a common prefix in their names. 
+This type of inheritance promotes reuse based on business suitability, as rules are aggregated at higher levels to reflect their 
+usability throughout an entire division or organization.
+
+For example, in an insurance company, the class ABCIns-Consumer-PolicyProcessing can inherit rules from its parent class ABCIns-Consumer, which in turn inherits from ABCIns1.
+
+Directed Inheritance
+Directed inheritance is explicit and allows a class to inherit rules from a specified parent class,which may be outside the business class hierarchy. 
+This type of inheritance is used to reuse standard Pega Platform rules and rules from other applications.
+
+For example, a class in an IT application might use directed inheritance to inherit rules from the standard Work- or Data- classes.
+
+Inheritance and Rule Reuse
+When reusing rules through inheritance, Pega first searches through the parent classes indicated by pattern inheritance. 
+If no suitable rule is found, it then searches the parent class specified by directed inheritance. 
+This process continues until Pega reaches the ultimate base class, @baseclass. If the rule is still not found, Pega returns an error.
+
+
+
+Six properties in pega
+single value, value-list, value-group, page, page list, group
+
+Decision trees, tables
+Cascading approvals and types
+localizing of applications
+field values
+ui elements: sections, layouts

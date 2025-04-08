@@ -1,0 +1,344 @@
+ Web Services
+------------
+-> Web Services can be defined as a collection of protocols for exchanging information between two applications.
+-> Web Services enable different web applications to communicate with each other irrespective of language and irrespective of platform they are operated in 
+   a loosely coupled manner.
+-> Web Services are generally classifed into two categories:
+		- SOAP (JAX-WS)
+		- REST (JAX-RS)
+-> SOA stands for Service Oriented Architecture which is a set of principles and web service is a way to implement these principles in our application.
+-> SOA is maintained by open bodies like W3C and people from various organizations like microsoft, oracle, ibm, etc.
+
+		
+SOAP
+----
+-> SOAP stands for Simple Object Access Protocol and is a type of Web Services.
+-> JAX-WS (Java API for XML Web Services) is the Java API to implement SOAP Web Services.
+-> JAX-WS Consists of Specification & API.
+-> Specification is a set of rules defined to design Web Service.
+-> Specifications help Web Services engines like Apache CXF and GlassFish to implement the JAX-WS standards.
+-> API consists of annotations used by developers to develop Web Services.
+-> SOAP is to be used:
+	- When we have a lot of non functional requirements. 
+	- When we need to define a formal contract between the webservice provider and consumer through a WSDL file. 
+	- We need reliable asychronous processing or messaging between our webservice provider and consumer.
+-> SOAP is a specification from w3c (World Wide Web Consortium).
+-> A specification is a set of rules and incase of SOAP, this rules come in form of XML.
+
+
+WSDL (Web Services Description Language)
+----------------------------------------
+-> A WSDL file is a contract between the Web Service Provider and the Consumer.
+-> It is a XML file with .wsdl extension.
+-> A WSDL provides information about the following:
+	- What a Web Service provides (Abstract Portion: comprises of types, messages, operation, porttype)
+	- How a Web Service provides it 
+	- How a consumer can consume it. (Physical Portion: comprises of binding, service)
+-> porttype links the Abstract section & Physical section.
+
+
+WSDL styles
+-----------
+-> The SOAP nodes are configured by using a specific WSDL binding that has a style of either document (the default) or rpc. 
+-> All operations that are defined in a specific WSDL binding are usually defined with the same use, which can be either literal (the default) or encoded.
+-> The following terms are used to describe the three general types of WSDL bindings:
+	- document-literal (style="document", use="literal")
+	- rpc-literal (style="rpc", use="literal")
+	- rpc-encoded (style="rpc", use="encoded")
+
+
+SOAP WS Design Approaches
+-------------------------
+SOAP WS can be designed using two approaches:
+	- Top Down or WSDL First or Contract First
+	- Code First or Bottom Up
+
+
+Cotract First Design
+--------------------
+-> Create a WSDL file.
+-> Generate the java stubs using tools like wsdl2java.
+-> Implement the web services endpoint.
+
+Advantages:
+	- Contract with the consumer Signed off
+	- Better Interoperability
+	- Fast Integration 
+
+
+Code First Design
+-----------------
+-> Write Java Code and annotate.
+-> Generate the WSDL from the code using java2wsdl.
+
+
+Some Important Annotations
+--------------------------
+Resource Path Annotations
+	@Path: Specifies the URI path for a resource class or method.
+
+HTTP Method Annotations
+	@GET: Responds to HTTP GET requests.
+	@POST: Responds to HTTP POST requests.
+	@PUT: Responds to HTTP PUT requests.(Updates the complete resource)
+	@DELETE: Responds to HTTP DELETE requests.
+	@HEAD: Responds to HTTP HEAD requests.
+	@OPTIONS: Responds to HTTP OPTIONS requests.
+	@PATCH: Responds to HTTP PATCH requests. (Updates the resource partially)
+
+Media Type Annotations
+	@Produces: Specifies the media types that a resource method can produce.
+	@Consumes: Specifies the media types that a resource method can consume.
+
+Parameter Annotations
+	@PathParam: Extracts a path parameter from the URI.
+	@QueryParam: Extracts a query parameter from the URI.
+	@FormParam: Extracts a form parameter from the request body.
+	@MatrixParam: Extracts a matrix parameter from the URI.
+	@CookieParam: Extracts a cookie from the request.
+	@HeaderParam: Extracts a header from the request.
+
+Context Annotations
+	@Context: Injects contextual information (e.g., HttpServletRequest, HttpServletResponse, UriInfo).
+
+Miscellaneous Annotations
+	@DefaultValue: Specifies a default value for a parameter if it is not provided in the request.
+	@Encoded: Indicates that the annotated parameter or return type should not be URL-encoded or decoded.
+	@BeanParam: Aggregates multiple parameters into a single bean.
+
+
+
+JAXB
+----
+-> JAXB stands for Java architecture for XML binding.
+-> It provides an easy way to map Java classes and XML schema.
+-> It is same like Hibernate:
+		Java -> Hibernate -> SQL
+		Java -> JAXB -> XML
+-> The JAXB consists of Three Tools:
+	- XJC(XML Java Compliler): Converts XML Schema to Java Classes (XML Schema -> Java Classes) (stubs generation) (UnMarshalling)
+	- SCHEMAGEN: Converts Java Classes to XML Schema (Java Classes -> XML Schema)
+	- RunTime API: Converts Java Objects to XML and Vice-versa (Marshalling is also called as same and UnMarshalling is vice-versa)
+
+
+XmlRootElement Annotation
+-------------------------
+-> The @XmlRootElement annotation is part of the Java Architecture for XML Binding (JAXB) framework. 
+-> It’s used to define a Java class as an XML element, allowing instances of that class to be marshaled (converted) to XML and 
+   unmarshaled (converted) from XML.
+-> @XmlRootElement is used at the class level (similar to @Entity).
+-> It maps a Java class to an XML element and provides a means to control the XML element's name and namespace.
+
+
+Apache CXF
+---------
+-> Apache CXF is a popular Web Services Engine in Java Space.
+-> Web Service Engines provide us tools to run and build Web Services.
+-> It implements both JAX-WS and JAX-RS Standards.
+-> CXF Engine Performs two main tasks:
+	- Serialize and Deserializa (Marshalling and UnMarshalling)
+	- Publish and Dispatch Endpoints.
+
+WorkFlow OverView Of CXF:
+------------------------
+XML <-> CXF Engine <-> Java Object <-> Web Service Endpoint
+
+
+
+MTOM
+----
+-> MTOM Stands for Message Transmission and Optimisation Mechanism
+-> It is a standard from SOAP Web Services to exchange and compress files.
+-> DataHandler attachInfo is used to optimise files.
+-> In CXF, we need to use binding.setMTOMEnable(True) to work with MTOM;
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+REST
+----
+-> REST stands for REpresentational State Transfer. 
+-> REST is web standards based architecture and uses HTTP Protocol. 
+-> It revolves around resource where every component is a resource and a resource is accessed by a common interface using HTTP standard methods. 
+-> REST was first introduced by Roy Fielding in 2000.
+
+
+Resources In REST
+-----------------
+-> REST architecture treats every content as a resource. 
+-> These resources can be Text Files, Html Pages, Images, Videos or Dynamic Business Data. 
+-> REST Server simply provides access to resources and REST client accesses and modifies the resources. 
+-> Here each resource is identified by URIs (Uniform Resource Identifier)/ Global IDs. 
+-> REST uses various representations to represent a resource like Text, JSON, XML. 
+-> The most popular representations of resources are XML and JSON.
+
+
+Good Resource Representation
+----------------------------
+-> Following are some important points to be considered while designing a representation format of a resource in RESTful Web Services.
+	Understandability: Both the Server and the Client should be able to understand and utilize the representation format of the resource.
+	Completeness: Format should be able to represent a resource completely. For example, a resource can contain another resource. Format should be able to represent simple as well as complex structures of resources.
+	Linkablity: A resource can have a linkage to another resource, a format should be able to handle such situations.
+
+
+Messaging In REST
+-----------------
+-> Restful Web Services make use of HTTP Methods to communicate between Client and Server.
+-> A client sends a message in the form of HTTP Request and the server responds back in the form of HTTP Response. This technique is called Messaging.
+-> Every Message consists of HTTP Response and HTTP Request.
+
+HTTP Request
+-------------
+An HTTP Request has five major parts:
+
+-> Verb: Indicates the HTTP methods such as GET, POST, DELETE, PUT, etc.
+-> URI: Uniform Resource Identifier (URI) to identify the resource on the server.
+-> HTTP Version: Indicates the HTTP version. For example, HTTP v1.1.
+-> Request Header: Contains metadata for the HTTP Request message as key-value pairs. For example, client (or browser) type, format supported by the client, format of the message body, cache settings, etc.
+-> Request Body: Message content or Resource representation.
+
+HTTP Response 
+-------------
+An HTTP Response has four major parts:
+
+-> Status/Response Code − Indicates the Server status for the requested resource. For example, 404 means resource not found and 200 means response is ok.
+-> HTTP Version − Indicates the HTTP version. For example HTTP v1.1.
+-> Response Header − Contains metadata for the HTTP Response message as keyvalue pairs. For example, content length, content type, response date, server type, etc.
+-> Response Body − Response message content or Resource representation.
+
+
+Restful Addressing
+------------------
+-> Addressing refers to locating a resource or multiple resources lying on the server. It is analogous to locate a postal address of a person.
+-> Each resource in REST architecture is identified by its URI (Uniform Resource Identifier).
+->  A URI is of the following format :
+	<protocol>://<service-name>/<ResourceType>/<ResourceID>
+
+Constructing a Standard URI
+-------------------------
+The following are important points to be considered while designing a URI:
+
+-> Use Plural Noun − Use plural noun to define resources. For example, we've used users to identify users as a resource.
+-> Avoid using spaces − Use underscore (_) or hyphen (-) when using a long resource name. For example, use authorized_users instead of authorized%20users.
+-> Use lowercase letters − Although URI is case-insensitive, it is a good practice to keep the url in lower case letters only.
+-> Maintain Backward Compatibility − As Web Service is a public service, a URI once made public should always be available. In case, URI gets updated, redirect the older URI to a new URI using the HTTP Status code, 300.
+-> Use HTTP Verb − Always use HTTP Verb like GET, PUT and DELETE to do the operations on the resource. It is not good to use operations name in the URI.
+
+
+Idempotent
+----------
+An HTTP Method is considered idempotent only if the results will always be same no matter how many times these methods are invoked.
+
+Get: Read Only, Idempotent
+Post: Non-Idempotent
+Put: Idempotent
+Delete: Idempotent
+Patch: Non-Idempotent
+Head: Idempotent
+Options: Idempotent
+
+
+HTTP Status Codes
+----------------
+
+1xx: Informational
+-----------------
+100 Continue: The server has received the request headers, and the client should proceed to send the request body.
+101 Switching Protocols: The server is switching to the protocol that the client requested.
+102 Processing: The server has received and is processing the request, but no response is available yet.
+
+2xx: Success
+-----------
+200 OK: The request was successful, and the server returned the requested resource.
+201 Created: The request was successful, and a new resource was created.
+202 Accepted: The request has been accepted for processing, but the processing is not complete.
+203 Non-Authoritative Information: The request was successful, but the information returned is from a third-party source.
+204 No Content: The request was successful, but there is no content to return.
+205 Reset Content: The request was successful, and the client should reset the view that caused the request.
+206 Partial Content: The server is delivering only part of the resource due to a range header sent by the client.
+
+3xx: Redirection
+---------------
+300 Multiple Choices: The request has multiple possible responses.
+301 Moved Permanently: The resource has been permanently moved to a new URL.
+302 Found: The resource has been temporarily moved to a different URL.
+303 See Other: The response to the request can be found at another URL.
+304 Not Modified: The resource has not been modified since the last request.
+305 Use Proxy: The requested resource is available only through a proxy.
+307 Temporary Redirect: The resource has been temporarily moved to a different URL, and the client should use the original URL for future requests.
+308 Permanent Redirect: The resource has been permanently moved to a different URL, and the client should use the new URL for future requests.
+
+4xx: Client Errors
+----------------
+400 Bad Request: The server could not understand the request due to invalid syntax.
+401 Unauthorized: The client must authenticate itself to get the requested response.
+402 Payment Required: Reserved for future use.
+403 Forbidden: The client does not have access rights to the content.
+404 Not Found: The server cannot find the requested resource.
+405 Method Not Allowed: The request method is known by the server but is not supported by the target resource.
+406 Not Acceptable: The server cannot produce a response matching the list of acceptable values defined in the request.
+407 Proxy Authentication Required: The client must authenticate itself with the proxy.
+408 Request Timeout: The server did not receive a complete request in time.
+409 Conflict: The request conflicts with the current state of the server.
+410 Gone: The resource requested is no longer available and will not be available again.
+411 Length Required: The server requires the Content-Length header to be specified.
+412 Precondition Failed: One or more conditions given in the request header fields were not met.
+413 Payload Too Large: The request entity is larger than the server is willing or able to process.
+414 URI Too Long: The request URI is longer than the server can interpret.
+415 Unsupported Media Type: The media format of the requested data is not supported by the server.
+416 Range Not Satisfiable: The range specified in the request header cannot be fulfilled.
+417 Expectation Failed: The server cannot meet the requirements of the Expect request-header field.
+
+5xx: Server Errors
+----------------
+500 Internal Server Error: The server encountered an unexpected condition that prevented it from fulfilling the request.
+501 Not Implemented: The server does not support the functionality required to fulfill the request.
+502 Bad Gateway: The server received an invalid response from the upstream server.
+503 Service Unavailable: The server is not ready to handle the request.
+504 Gateway Timeout: The server did not receive a timely response from the upstream server.
+505 HTTP Version Not Supported: The server does not support the HTTP protocol version used in the request.
+
+
+Statelessness
+-------------
+-> Each client request to the server must contain all the information needed to understand and process the request. 
+-> The server does not store any client context between requests, this restriction is called Statelessness.
+
+Advantages of Statelessness
+--------------------------
+-> Web services can treat each method request independently.
+-> Web services need not maintain the client's previous interactions. It simplifies the application design.
+
+
+Disadvantages of Statelessness
+-----------------------------
+-> Web services need to get extra information in each request and then interpret to get the client's state in case the client interactions are to be taken care of.
+
+
+Caching
+-------
+-> Caching refers to storing the server response in the client itself, so that a client need not make a server request for the same resource again and again. 
+-> A server response should have information about how caching is to be done, so that a client caches the response for a time-period or never caches the server response.
+-> Following are the headers which a server response can have in order to configure a client's caching :
+
+Date: Date and Time of the resource when it was created.
+Last Modified: Date and Time of the resource when it was last modified.
+Cache-Control: Primary header to control caching.
+Expires: Expiration date and time of caching.
+Age: Duration in seconds from when resource was fetched from the server.
+
+-> Following are the details of a Cache-Control header:
+
+Public: Indicates that resource is cacheable by any component.
+Private: Indicates that resource is cacheable only by the client and the server, no intermediary can cache the resource.
+no-cache/no-store: Indicates that a resource is not cacheable.
+max-age: Indicates the caching is valid up to max-age in seconds. After this, client has to make another request.
+must-revalidate: Indication to server to revalidate resource if max-age has passed.
+
+
+Best Practices
+-------------- 
+-> Always keep static contents like images, CSS, JavaScript cacheable, with expiration date of 2 to 3 days.
+-> Never keep expiry date too high.
+-> Dynamic content should be cached for a few hours only.
+
+

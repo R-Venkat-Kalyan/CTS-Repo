@@ -1,0 +1,199 @@
+										AWS - SB
+
+IAM
+----
+-> Idenity and Access Management (IAM) is used for:
+	 Authentication: The user is a valid user or not.
+	 Authorization: The right access is to provided or not.
+-> The root user account has the complete access and it is not preferable to use root account for day to day activites.
+-> The best practice is to create an IAM user and use it for day to day activities.
+
+
+IAM User
+--------
+-> It is always preferred to create an IAM Group and then add individual IAM Users to that IAM Group to manage access to aws resources.
+-> Steps to create a IAM Group:
+		- sign-in to AWS management console using your root account credentials. 
+		- Under services, search for IAM and access the IAM Dashboard page.
+		- In dashboard page, at left sidebar click on User Groups.
+		- User groups -> Create group -> Name the group(MyFirstGroup) -> Attach Permissions policies(Administrator Access)
+-> Now, we need to create and add users to our User Group:
+		- click on Users -> provide User name(kalyan_dev) -> provide access to management console - select user type - next
+		- set permissions -> add user to group -> select your group -> click next -> review and create
+-> Successfully we have created an IAM User and the console to be signed-in using IAM User Credentials is a bit different.
+-> In order to access the console using IAM User Credentials, follow the below steps:
+		- Once the IAM User is created successfully, an IAM User summary page will be displayed with a link.
+		- Copy the link and save it or bookmark it to sign-in AWS Management Console Using IAM User.
+		- The link will be like this: https://438941004342.signin.aws.amazon.com/console
+		- Access your link and provide sign-in credentials that you created during IAM user creation.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+EC2
+---
+-> Whenever we want to deploy applications, we need physical servers.
+-> In cloud when we need servers, we rent Virtual Machines called as EC2 instances.
+-> EC2 services are used to provision EC2 instances.
+-> Features of EC2:
+		- Create and manage lifecycle of EC2 instances.
+		- Attach storage to your EC2 instance (Amazon EBS).
+		- Load balancing for multiple EC2 instances.
+
+
+Steps to Create EC2 Instance
+----------------------------
+-> sign-in to aws management console
+-> Under Services, search for EC2 and access the EC2 dashboard
+-> Click on Create Instance and provide data in following fields:
+	- Name -> provide a name to instance
+	- AMI -> leave it default or change it according to requirement
+	- Instance Type -> leave it default or update according to requirement
+	- Key Pair -> click on Create New KeyPair -> provide a name -> download the key pair
+	- Network Settings: leave it default
+	- Click on launch instance
+	- Wait for some time until state is running
+-> Select instance: click connect using any of the approaches, I am going with EC2 Instance Connect:
+	- Provide User Name and Click Connect
+	- A terminal kind of page will appear where we can execute commands to do installations and check for available installtions.
+
+
+Steps To Install Softwares In EC2 Instance
+------------------------------------------
+-> In order to install softwares in our instance, we need to be a super user.
+-> To turn into a super user, use the below command:
+	- sudo su
+-> After entering the above command, we are a super user(root user).
+-> To install our softwares, we make use of package managers.
+-> For our selected linux instance, the package manager is: yum
+-> Before installing any softwares, we need to update our package manager using below command:
+	- yum update -y
+-> Here, I will be installing Apache Tomcat Web Server using below command:
+	- yum install httpd
+-> After the software is installed, we can start it by using below command:
+	- systemctl start httpd
+-> With that command the server will be started and to check what is happening, use below steps:
+	- Go to Instances
+	- Select your Instance 
+	- Get the Public IP Address and access it in browser.
+-> Based on our above configurations we won't be able to access any server with Public IP Address.
+-> Follow the below steps to make our server accessible:
+	- Instance -> Security Groups -> Inbound rules -> Edit Inbound rules -> Add rule -> Select HTTP -> Selct source as anywhere -> 0.0.0.0/0 -> Save rules
+-> Now when you try to access the updated Public IP Address again, a simple test page of Apache Tomcat will appear.
+
+
+Important EC2 Concepts
+----------------------
+-> AMI: Specifies what OS and what software do we want on the instance.
+-> Instance Family: Specifies what family of hardware to be offered on the instance.
+-> Instance Size: Specifies what quantity of hardware to be provided on the instance.
+-> EBS: Attach disks to EC2 instances.
+-> Security Group: Acts as a Virtual Firewall to control incoming and outgoing traffic.
+-> Key Pair: Public Key & Private Key
+-> Public Key: Stored in EC2 instance
+-> Private Key: Stored By User that is downloaded in the form of JSON to connect to other resources.
+
+
+Auto Scaling Groups In EC2
+--------------------------
+-> Auto Scaling groups allow us to create and manage a group of EC2 Instances.
+-> In Auto Scaling we can specify minimum number of insatnces and maximum number of instances to distribute traffic.
+-> Elastic Load Balancing is used to distribute traffic to various instances.
+-> In AWS, we can manually configure Auto Scaling Group and Elastic Load Balancing which is a bit complex.
+-> However, It is easier to use a PAAS to configure Auto Scaling Group and Elastic Load Balancing using Elastic BeanStalk.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Elastic BeanStalk
+-----------------
+-> It provides the simplest way to deploy and scale our web applications in AWS.
+-> It supports Java, Python, Ruby, Go, .Net, Php, Node.JS and Docker Applications.
+-> No usage charges for BeanStalk but we need to pay for other resources provisioned using BeanStalk like EC2.
+-> Key Features: Automatic Load Balancing, Auto scaling, Managed Platform Updates.
+-> It is also a PAAS model.
+	
+IAAS: Cloud Provider Manages Hardware, Networking, Virtualization.
+PAAS: Cloud Provider Manages Hardware, Networking, Virtualization, OS, APPlication Runtime, Autoscaling, Availability and Load Balancing.	
+
+
+Steps To Deploy App In Elastic BeanStalk
+----------------------------------------
+-> Under services section search for Elastic BeanStalk and access the BeanStalk dashboard page.
+-> Click on Create Application and provide below details:
+		- Name
+		- Platform
+		- Application Code
+-> Click on Configure Options and change followings fields:
+		- Capacity -> Edit -> Environment Type -> Load Balanced -> Min & Max Instances -> scroll to bottom -> save
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Docker Containers
+-----------------
+-> One of the famous architecture for application development is MicroServices.
+-> MicroServices can be simpy defined as divinding a single large application into small independent units called as Services.
+-> These services are managed and deployed individually and the services may be using different technologies and programming languages.
+-> It is very difficult for the deployment team to deploy this kind of applications as individual service is deployed with different configurations.
+-> To simplify this complex process of deployment Docker Containers came into picture.
+-> Docker Images are created for each individual microservice and Docker Images has all needs of a MicroService.
+-> Docker Images contain the following:
+		- Application RunTime (JDK or Python or NodeJS)
+		- Application Dependencies and code.
+-> Docker Images runs the same way in Your Local Machine, Corporate Data Center or in Cloud.
+-> Container Orchestration is the process used by Cloud Service Providers to manage MicroService Applications.
+-> Kubernetes is a Open Source Container Orchestrator Tool offered by all Cloud Service Providers.
+-> Amazaon ECS (Elastic Container Service) is also a Container Orchestrator Tool offered by AWS.
+-> AWS Fargate is also a Container Orchestrator Tool offered by AWS which is also called as Serverless ECS/EKS.
+-> No Free Tier is available for Kubernetes, ECS and Fargate.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+AWS Serverless
+--------------
+-> Serverless in AWS doesn't mean that there are no Servers used rather it means that we need not to manage any Servers.
+-> Serverless allows us to focus on code without worrying about Infrastructure.
+-> Serverless is Pay For Use, which means we pay for Number Of Requests made rather than the time of using the service.
+
+AWS Lambda
+----------
+-> AWS Lambda is a Serverless Compute Model which allows us to run applications without worrying abotu infrastructure.
+-> In Lambda we can simple upload our code and deploy it directly.
+-> The maximum running time of our applications should be 15 minutes.
+
+Steps to deploy app in Lambda Service
+-------------------------------------
+-> Go to Services and search for Lambda, access the Lambda dashboard page.
+-> Click on Create and select Author From Scratch.
+-> Provide the below mentioned details:
+		- Name: Provide a name to your app
+		- Runtime: Select a runtime
+		- Code: Upload your code
+		- Test: Test your code -> create event -> save -> test 
+		- Deploy New Changes: Make Some Changes and deploy and test again.
+	
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Steps to Deploy Spring Boot App in AWS BeanStalk
+------------------------------------------------
+-> Create a simple Spring Boot App using Spring Initializer and add dependencies like starters-web, thymeleaf.
+-> Click on generate and extract the zip and import it into your IDE (Eclipse or STS).
+-> Create basic pages like home.html, login.html.
+-> Create a Controller class and write mapping logic to render html files.
+-> It is prefered to change the server port to 5000 using application.properties (server.port=5000).
+-> Test the application locally before deploying.
+-> Right Click on application -> run as -> maven build -> under goals -> provide it as: clean package -> Apply -> Run
+-> A file named as Application_Name-0.0.1-SNAPSHOT.jar will be generated under Target folder.
+-> Login to AWS Management Console using your credentials.
+-> Under services section search for Elastic BeanStalk and access the BeanStalk dashboard page.
+-> Click on Create Application and provide below details:
+		- Environment Tier: Select Web Server Environment
+		- Application name: Provide a name to your app
+		- Platform: Select Java
+		- Application Code: Select Upload Your Code
+		- Version Label: Provide a Version (v1)
+		- Source code origin: Upload Application -> Choose File -> Upload your created JAR file from Project's target folder -> Click on Next.
+		- Configure service access -> Service role: Use an existing service role
+		- Scroll Down -> Click Skip to review
+		- Submit -> Wait for some time -> Your APP will be deployed and you will get a link to access.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------

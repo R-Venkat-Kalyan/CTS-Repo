@@ -1,0 +1,54 @@
+									Steps To Connect SpringBoot App With MongoDB Atlas Cloud
+									--------------------------------------------------------
+
+
+MongoDB Atlas
+-------------
+-> MongoDB Atlas is a web-based, cloud managed platform offered by MongoDB to deploy No-SQL Databases.
+-> The main advantage of using MongoDB Atlas is that we cann access our database services from wherever we want as it is deployed in cloud.
+-> If we are using local databases, then we cannot access them in other systems but we can access MongoDB Atlas Cloud databases in all systems.
+-> When we are deploying our projects to cloud, It is difficult to confifure database for our Application and by using MongoDB Atlas Cloud we can simplify it.
+-> The Applications connected with MongoDB Atlas Cloud doesn't require additional database configuration while deploying them as they are already in cloud.
+
+
+Steps To Create MongoDB Atlas Cloud Account
+-------------------------------------------
+-> Open the following URL in a browser: https://www.mongodb.com/atlas
+-> Click on Try Free, Fill the Sign-Up form with your details.
+-> Provide details in GETTING TO KNOW YOU & GETTING TO KNOW YOUR PROJECT fields.
+-> For Deploy Your Database, Select M0 Free Version and provide details in below specifed fields:
+		- Name: Cluster0
+		- Provider: AWS
+		- Region: Mumbai(India)
+-> Click on Create Deployment & wait for some time until the deployment is created. 
+-> Click on Connect To Cluster0 & it will ask for a USERNAME & PASSWORD.
+-> Provide simple USERNAME(admin1234) & PASSWORD(root1234) - Click on Create A Database User - Click on Connect.
+-> If required Select the way you want to connect and provide required fields like App Name, etc.
+-> That's it Your MongoDB Atlas Account is Created.
+
+
+Steps to Connect MongoDB Atlas Cloud Database with SpringBoot App
+-----------------------------------------------------------------
+-> In the Created Cluster(Cluster0), Under Your Created App, Click on Browse Collections, a default sample data will appear.
+-> Click on Create DataBase, Provide a Database Name & a Collection Name.
+-> Return Back to Your Cluster Overview Page & Click On Connect - Connect To Your Application - Drivers.
+-> Select Driver as Java & Version: Latest Mentioned Version
+-> You will get a Connection String as Shown Below, Copy it & Save it:
+	mongodb+srv://admin1234:<db_password>@my-app.bzqxk.mongodb.net/?retryWrites=true&w=majority&appName=My-App
+-> Replace <db_password> with your Database User PASSWORD.
+-> Create a simple SpringBoot App using Spring Initializer: https://start.spring.io/index.html
+-> Add dependencies (Starter-MongoDB, Web, Thymeleaf, etc).
+-> Click on Generate, Unzip the downloaded file and import the same in IDE (Eclipse, STS)
+-> Create Repositories, Entities, Controller and write your own logic.
+-> Annotate the Main SpringBootApplication class with @EnableMongoRepositories.
+-> Specify the MongoDB Atlas Cloud Connection URI in Application.properties:
+		spring.data.mongodb.uri=mongodb+srv://admin1234:<db_password>@my-app.bzqxk.mongodb.net/?retryWrites=true&w=majority&appName=My-App
+		spring.data.mongodb.database=Demo1
+-> Create a database(Demo1) in your cloud environment before running your SpringBoot App.
+-> Bydefault, there are some Network Restrictions configured for your database which won't allow your app to connect to database.
+-> In order to make sure that you can connect to your app from any network, follow below steps:
+		- Under your project dashboard page, in side navbar under security open Network Access.
+		- Security -> Network Access -> IP Access List -> Add IP Address -> Access List Entry: 0.0.0.0/0 -> Confirm.
+-> Now your database is accessed from every network (Less Secured) and you can connect your app to database.
+
+

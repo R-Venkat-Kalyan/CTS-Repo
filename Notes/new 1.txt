@@ -1,0 +1,69 @@
+field values
+creating and setting application
+testing 
+debugging
+Managing application access
+application security
+accessibility
+localizing 
+creating managing team of users - today
+designing mobile app - today
+
+
+
+Assignment: Loan Case Type
+	3rd stage = Verification -> child case (verification)
+	steps:
+		the submitted loan details from the parent case
+		1st step is approve / reject
+		routed to a verification team
+		create a new verification team
+		create 3 new operators 
+		add them to team
+
+		when case is executed, customer submits
+		loan info and waits for completion of verification
+
+		4th satge = review
+		display the loan info
+
+		unless 3rd stage is completed -> 4th won't start
+
+		new pesrona -> verification users
+		new portal -> verification portal
+		verification portal : display worklist and
+		work queue widgets and verify the loan details
+		submitted by logging verification portal using
+		verification user operators.
+
+
+		verification portal:
+		work queue widget: 5 pending cases
+
+
+create a team of module users
+creating a portal
+creating a dashboard
+
+
+Email validation: ends with @cogniznt.com
+
+
+
+
+
+Doubts:
+How are properties stored views and when creating a field property how it is accessed in view.
+create Pdf automation: uses
+Why simply mail automation is generating a pdf and not sending mail.
+why password datatype is available.
+Attachments are not displayed in generated file for mail automation.
+
+
+
+Data transforms are used to convert source data from one fromat or class to another.
+It is also used to initialize, map, manipulate data within a case.
+Pega platform creates pyDefault and pySetFieldDefaults to initialize data.
+Connector Properties -> Set Properties -> Apply Data Transform
+
+Super class is used to make data transform more modular and maintainable by combining several data transforms across different levels of the class hierarchy

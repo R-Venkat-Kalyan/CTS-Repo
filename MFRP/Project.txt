@@ -1,0 +1,262 @@
+AG
+---
+MyClaimManagerAG
+MyClaimAdjusterAG
+
+
+Portals
+-------
+My Claim Adjuster Portal
+My Claim Manager Portal
+
+
+OP IDs
+------
+ClaimManager@gmail.com
+ClaimAdjuster@gmail.com
+
+
+												User Stories
+												------------
+
+1st
+---
+1.	Adjuster logs in the application 
+2.	Adjuster clicks on ‘Create Claim’
+3.	Adjuster fills in the below mandatory fields –
+a.	Claimant Name (Text Field)
+b.	Policy Number (Dropdown to display existing policy numbers)
+c.	Date of Birth (Calendar 1900-2020 – should be an old date)
+d.	Date of Loss (Calendar 1900-2022 – should be an old date)
+e.	Loss Description (Paragraph, 1000-character, Free Text)
+f.	Account Line (Dropdown – values being -> Indemnity, Medical, Legal)
+g.	Supporting Document (Attachment)
+4.	Adjuster can preview the details
+5.	Adjuster has an optional paragraph field to add her comments regarding the chosen action
+6.	Adjuster can save the information using ‘Save as draft’ button for future updates, and see below message – 
+	‘Claim # xxxxxx has been saved as draft successfully’
+7.	Adjuster can click on ‘Submit claim’ to create the claim 
+8.	Upon clicking on Submit claim button, success message should be displayed – ‘Claim # xxxxxx has been created successfully’
+9.	The status of the claim should be updated as ‘Open-Draft’ for draft claim, or ‘Open-New’ for submitted claim
+
+
+2nd
+---
+1.	Adjuster logs in the application 
+2.	Adjuster clicks on any existing draft or open claim from the Home Dashboard 
+3.	Dashboard will display below 3 details –
+a.	My draft claims (Will display the draft claims once saved as draft)
+b.	My open claims (will display the open submitted claims)
+c.	My close claims (will display the closed claims)
+4.	Adjuster reviews & updates in the below prepopulated fields as required –
+a.	Claimant Name (Text Field)
+b.	Policy Number (Dropdown to display existing policy numbers)
+c.	Date of Birth (Calendar 1900-2020 – should be an old date)
+d.	Date of Loss (Calendar 1900-2022 – should be an old date)
+e.	Loss Description (Paragraph, 1000-character, Free Text)
+f.	Account Line (Dropdown – values being -> Indemnity, Medical, Legal)
+g.	Supporting Document (Attachment)
+5.	Adjuster can preview the details
+6.	Adjuster has an optional paragraph field to add her comments regarding the chosen action
+7.	Adjuster can click on ‘Submit claim’ to create the claim (for draft or open)
+8.	Upon clicking on Submit claim button, success message should be displayed – ‘Claim # xxxxxx has been updated successfully’
+9.	The status of the claim should be updated as ‘Open-Draft’ for draft claim, or ‘Open-New’ for submitted claim
+
+
+
+3rd
+----
+1.	Adjuster logs in the application 
+2.	Adjuster clicks on any open existing claim from the Home Dashboard 
+3.	Adjuster reviews the below prepopulated fields as required –
+a.	Claimant Name (Text Field)
+b.	Policy Number (Dropdown to display existing policy numbers)
+c.	Date of Birth (Calendar 1900-2020 – should be an old date)
+d.	Date of Loss (Calendar 1900-2022 – should be an old date)
+e.	Loss Description (Paragraph, 1000-character, Free Text)
+f.	Account Line (Dropdown – values being -> Indemnity, Medical, Legal)
+g.	Supporting Document (Attachment)
+4.	Adjuster clicks on ‘Create reserve’ button to add required amount in the text field called ‘Enter reserve’
+5.	The amount should be non-negative and non-zero 2-digit decimal value
+6.	User needs to reenter the same amount in another field ‘Confirm reserve’
+7.	Upon any mismatch, there should be validation message displayed - ‘The entered amounts do not match’
+8.	Manager has an optional paragraph field to add her comments regarding the chosen action
+9.	Once everything is in order, the user clicks on ‘Submit reserve’ button
+10.	If the amount is less than the financial authority of the adjuster, it gets updated in the read only ‘Reserve amount’ field in the claim 
+	itself after showing a success message – ‘Reserve has been created for the claim’
+11.	If the amount is beyond the financial authority of the adjuster, it goes to the worklist of her manager as per hierarchy with the message – 
+	‘Reserve request has been assigned to <Manager Full Name> for approval’
+12.	The status of the claim should be updated as ‘Open-Pending’
+13.	An email notification should be sent with below details –
+a.	Recipient – To -> Manager, CC -> Claim Adjuster
+b.	Title – ‘Reserve request AR – xxxx has been assigned to you for claim xxxxxx’
+c.	Body – ‘<Adjuster full name> has raised a reserve request AR – xxxx for amount $ xxxx.xx on the Claim xxxxxx. 
+	Please login to Financial Application to take necessary action on the same. 
+	Please do not respond to this auto-generated email’
+
+
+4th
+---
+1.	Manager logs in the application 
+2.	Manager clicks on pending reserve approval case from the Home Dashboard
+3.	Dashboard will display below 4 details –
+a.	Pending my approval (Will display claims pending approval for Reserve/Payment requests)
+b.	My draft claims (Will display the draft claims once saved as draft)
+c.	My open claims (will display the open submitted claims)
+d.	My close claims (will display the closed claims)
+4.	Manger reviews the below prepopulated fields as required –
+a.	Claimant Name (Text Field)
+b.	Policy Number (Dropdown to display existing policy numbers)
+c.	Date of Birth (Calendar 1900-2020 – should be an old date)
+d.	Date of Loss (Calendar 1900-2022 – should be an old date)
+e.	Loss Description (Paragraph, 1000-character, Free Text)
+f.	Account Line (Dropdown – value being -> Indemnity/Medical/Legal)
+g.	Supporting Document (Attachment)
+5.	Manager – 
+a.	Either clicks on ‘Approve reserve’ button to approve addition of required reserve amount to the claim. Display message – 
+	‘Reserve request has been approved successfully’
+b.	Or clicks on ‘Reject reserve’ button to reject addition of required reserve amount to the claim. Display message – 
+	‘Reserve request has been rejected successfully’
+
+6.	Manager has an optional paragraph field to add her comments regarding the chosen action
+7.	The update in reserve amount should be reflected accordingly in the claim
+8.	The status of the claim should be updated as ‘Open-Processing’
+9.	In case of both approval/rejections, an email notification should be sent with below details –
+a.	Recipient – To -> Claim Adjuster, CC -> Manager
+b.	Title – ‘Reserve request AR – xxxx has be approved/rejected’
+c.	Body – ‘<Manager full name> has approved/rejected the reserve request AR – xxxx for amount $ xxxx.xx on the Claim xxxxxx.
+	Please do not respond to this auto-generated email’
+
+
+
+5th
+---
+1.	Adjuster logs in the application 
+2.	Adjuster clicks on any open existing claim from the Home Dashboard 
+3.	Adjuster reviews the below prepopulated fields as required –
+a.	Claimant Name (Text Field)
+b.	Policy Number (Dropdown to display existing policy numbers)
+c.	Date of Birth (Calendar 1900-2020 – should be an old date)
+d.	Date of Loss (Calendar 1900-2022 – should be an old date)
+e.	Loss Description (Paragraph, 1000-character, Free Text)
+f.	Account Line (Dropdown – values being -> Indemnity/Medical/Legal)
+g.	Supporting Document (Attachment)
+h.	Reserve Amount (Already accepted reserve value)
+4.	Adjuster clicks on ‘Create payment’ button to initiate payment transaction 
+5.	Adjuster needs to select ‘Payment type’ from the dropdown values as below –
+a.	Partial Payment (Payment < Reserve; The payment amount gets reduced from the reserve upon processing completion)
+b.	Full & Final Payment (Payment <= Reserve; The payment amount gets reduced from the reserve upon processing completion; 
+	the claim status gets changed to Closed)
+6.	Adjuster enters required payment amount in the text field called ‘Enter payment’
+7.	The amount should be non-negative and non-zero 2-digit decimal value
+8.	User needs to reenter the same amount in another field ‘Confirm payment’
+9.	Upon any mismatch, there should be validation message displayed - ‘The entered amounts do not match’
+10.	Once everything is in order, the user clicks on ‘Submit payment’ button
+11.	Adjuster has an optional paragraph field to add her comments regarding the chosen action
+12.	If the amount is less than the financial authority of the adjuster, it gets updated in the read only ‘Reserve amount’ & ‘Paid amount ’field 
+	in the claim itself after showing a success message – ‘Payment has been processed for the claim’
+13.	If the amount is beyond the financial authority of the adjuster, it goes to the worklist of her manager as per hierarchy with the message – 
+	‘Payment request has been assigned to <Manager Full Name> for approval’
+14.	The status of the claim should be updated as ‘Open-Pending’
+15.	An email notification should be sent with below details –
+a.	Recipient – To -> Manager, CC -> Claim Adjuster
+b.	Title – ‘Payment request AP – xxxx has been assigned to you for claim xxxxxx’
+c.	Body – ‘<Adjuster full name> has raised a payment request AP – xxxx for amount $ xxxx.xx on the Claim xxxxxx. 
+	Please login to Financial Application to take necessary action on the same. 
+	Please do not respond to this auto-generated email’
+
+
+
+
+6th
+---
+1.	Manager logs in the application 
+2.	Manager clicks on pending payment approval case from the Home Dashboard
+3.	Dashboard will display below 4 details –
+a.	Pending my approval (Will display claims pending approval for Reserve/Payment requests)
+b.	My draft claims (Will display the draft claims once saved as draft)
+c.	My open claims (will display the open submitted claims)
+d.	My close claims (will display the closed claims)
+4.	Manger reviews the below prepopulated fields as required –
+a.	Claimant Name (Text Field)
+b.	Policy Number (Dropdown to display existing policy numbers)
+c.	Date of Birth (Calendar 1900-2020 – should be an old date)
+d.	Date of Loss (Calendar 1900-2022 – should be an old date)
+e.	Loss Description (Paragraph, 1000-character, Free Text)
+f.	Account Line (Dropdown – value being -> Indemnity/Medical/Legal)
+g.	Supporting Document (Attachment)
+h.	Reserve Amount (Already accepted reserve value)
+5.	Manager – 
+a.	Either clicks on ‘Approve payment’ button to approve processing of required payment amount to the claim. Display message – 
+	‘Payment request has been approved successfully’
+b.	Or clicks on ‘Reject payment’ button to reject processing of required payment amount to the claim. Display message – 
+	‘Payment request has been rejected successfully’
+
+6.	Manager has an optional paragraph field to add her comments regarding the chosen action
+7.	The update in reserve amount should be reflected accordingly in the claim
+8.	The status of the claim should be updated as ‘Open-Processing’
+9.	In case of both approval/rejections, an email notification should be sent with below details –
+a.	Recipient – To -> Claim Adjuster, CC -> Manager
+b.	Title – ‘Payment request AR – xxxx has be approved/rejected’
+c.	Body – ‘<Manager full name> has approved/rejected the payment request AR – xxxx for amount $ xxxx.xx on the Claim xxxxxx.
+	Please do not respond to this auto-generated email’
+
+
+
+
+7th
+---
+1.	Adjuster logs in the application 
+2.	Adjuster clicks on any existing open claim from the Home Dashboard 
+3.	Adjuster reviews & updates in the below prepopulated fields as required –
+a.	Claimant Name (Text Field)
+b.	Policy Number (Dropdown to display existing policy numbers)
+c.	Date of Birth (Calendar 1900-2020 – should be an old date)
+d.	Date of Loss (Calendar 1900-2022 – should be an old date)
+e.	Loss Description (Paragraph, 1000-character, Free Text)
+f.	Account Line (Dropdown – values being -> Indemnity/Medical/Legal)
+g.	Supporting Document (Attachment)
+h.	Reserve Amount
+i.	Payment Type
+j.	Paid Amount
+4.	Adjuster can preview the details
+5.	The case will be marked as close if –
+a.	Any Full & Final Payment has been approved on the claim
+b.	Upon reviewing, adjuster enters required comments, and click on ‘Close claim’ button; once adjuster clicks ‘Yes’ in the confirmation modal pop-up window ‘Are you sure you want to close the claim?’
+6.	Adjuster has an optional paragraph field to add her comments regarding the chosen action
+7.	The success message should be displayed – ‘Claim # xxxxxx has been closed successfully’
+8.	The status of the claim should be updated as ‘Resolved-Closed’
+
+
+
+Case Statuses
+-------------
+Open-Draft & Open-New for saved draft and submitted claim
+Open-Pending for adjuster provided reserve
+Open-Processing for manager approved reserve
+Open-Pending for adjuster provided payment
+Open-Processing for manager approved payment
+Resolved-Closed for adjuster closed claim
+
+
+
+
+Report Definition Steps
+-----------------------
+App Explorer -> Reports -> Report Definition -> Create
+Provide Label and Apply to Class -> Create and Open
+Add column sources (Case status, label, case id)
+Edit Filters -> Add filter condition
+Search for Portal Navigation -> Click on second menu properties 
+Save as Main Navigation
+Add below a new item, provide a label
+Add a click action: Harness, Target -> Replace current, provide any Tab name.
+For Harness: save as worklist harness, label -> create and open
+Add an embedded section -> Create a new one -> Open it
+Dynamic Layout -> Layout Group (Tab) -> Dynamic Layout (Default) -> Add table -> Provide source as report definition and provide respectiv report definition
+Add columns in each table, provide column headings, for each column value provide property.
+Save 
+
+
+
+

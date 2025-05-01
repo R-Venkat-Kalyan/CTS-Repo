@@ -4,11 +4,9 @@ https://dev.to/javafullstackdev/master-whatsapp-api-integration-in-your-spring-b
 
 https://www.baeldung.com/spring-boot-react-crud
 
-https://itcodescanner.com/tutorials/soap-web-service/quiz---soap-web-services---1
-
 https://www.academictutorials.com/quiz.asp?id=35
 
-https://github.com/jigar-sable/Portfolio-Website
+N8N: https://www.youtube.com/watch?v=2GZ2SNXWK-c
 
-https://www.youtube.com/watch?v=ClU-cJVqRLQ
+Survey: https://www.youtube.com/watch?v=ClU-cJVqRLQ
 

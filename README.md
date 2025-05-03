@@ -11,3 +11,5 @@ Survey: https://www.youtube.com/watch?v=ClU-cJVqRLQ
 Pega Topics: https://www.softlogicsys.in/pega-course-syllabus/
 
 Pegs Projects: https://3cross3tech.ongraphy.com/courses/Pega-Projects-62bc50ee0cf2f9e2a999a0a0
+
+Pega Projrects1: https://pega.devpost.com/project-gallery?page=2

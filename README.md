@@ -10,3 +10,4 @@ N8N: https://www.youtube.com/watch?v=2GZ2SNXWK-c
 
 Survey: https://www.youtube.com/watch?v=ClU-cJVqRLQ
 
+Pega Topics: https://www.softlogicsys.in/pega-course-syllabus/

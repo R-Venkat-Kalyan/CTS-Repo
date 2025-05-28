@@ -1,0 +1,10 @@
+										BFS_CC
+										------
+Application: Credit Card Generator
+Operators: Reddy.Kalyan@cognizant.com, kalyan@cts.com
+
+
+Dashboard Page
+	- Apply CC
+	- Update Details
+

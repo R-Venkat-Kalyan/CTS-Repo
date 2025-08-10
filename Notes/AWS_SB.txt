@@ -194,6 +194,7 @@ Steps to Deploy Spring Boot App in AWS BeanStalk
 		- Source code origin: Upload Application -> Choose File -> Upload your created JAR file from Project's target folder -> Click on Next.
 		- Configure service access -> Service role: Use an existing service role
 		- Scroll Down -> Click Skip to review
-		- Submit -> Wait for some time -> Your APP will be deployed and you will get a link to access.
+		- Click Create -> Wait for some time -> Your APP will be deployed and you will get a link to access.
+
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------

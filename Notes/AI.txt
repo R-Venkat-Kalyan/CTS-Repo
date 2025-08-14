@@ -1,0 +1,64 @@
+AI
+--
+AI is the simulation of human intelligence to allows machines to think like humanly and can be used for problem solving, language translation, decision making and so on.
+
+
+Classification of AI
+--------------------
+	-> LLMS
+	-> AI Workflow
+	-> AI Agents
+
+
+LLMS
+----
+LLMS are the Large Language models that take in input and provide an output based on their training.
+LLMS are trained on vast amount of data but they lack personal information.
+LLMS are passive, they wait for our prompt and then respond.
+GPT stands for Generative Pre-Trained Transformer.
+
+Example:
+Input (Write a appointment Email)	-> LLM (ChatGPT)	-> OutPut (Well tailored mail based on training)
+
+
+AI Workflows
+-----------
+AI workflows are the enhanced versions of LLMs that take in input, have access to provided personal information and then provide an output.
+AI Workflows are configured with a pre-defined path to retrieve our personal information which is also called as control logic.
+AI Workflows requires humans to configure control path to retrieve information.
+Retrieval Augmented Generation (RAG) is the process that helps AI Models "look things up" before they answer, RAG is a type of AI workflow.
+
+Example:
+Input (write a appointment email based on my calendar schedule)		-> LLM (ChatGPT + access to personal information, Google Calendar)		-> Output (Appointment schedule mail based on my availability as per calendar)
+
+
+
+
+AI Agents
+---------
+AI Agents are the enhanced version of AI workflows that follows ReAct methodology.
+ReAct is nothing but Reasoning + Act, it is used to remove human interference.
+AI Agents get a Goal, do Reasoning then Act using tools and do iteration to provide best results then provide output.
+
+
+Example:
+Goal (To create a LinkedIn post about best rated movies for year 2025)
+The agent will start reasoning and checks any source websites like imdb is provided or not.
+If Provided, it will act using tools like Excel (to fetch source websites provided) and does iteration then provides the best result.
+If no source is provided it will get data based on it's training model.
+
+
+
+LLM fails if I ask any personal data like my meeting calendar schedule due to lack of accessibility.
+AI workflow with a configured control path can be used to solve above LLM failure task.
+AI workflow will fail if ask it check whether, because of missing control logic path.
+
+
+
+
+Spring AI Project
+-----------------
+Create a Project using Spring Initializer and add open ai, web dependencies.
+Download and Import
+Register to open-ai api and get api key.
+application.properties: spring.ai.openai.api-key="key"

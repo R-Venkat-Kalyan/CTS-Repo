@@ -127,10 +127,47 @@ Steps To Deploy App In Elastic BeanStalk
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+Need for Virtualization and Docker
+----------------------------------
+Consider yourself as a developer who develops multiple applications using multiple different configurations, os and versions.
+Everything works fine when the application is within your system, but the problem arises when you share it with testing or devops team.
+The Configurations, OS and versions that you use may not match with the shared team configurations.
+Now the shared teams start complaining and they need to make lot of configuration changes to run your application which is time consuming and still cannot provide you working assured.
+To solve this problem Virtualization and Continerization came into picture.
+
+
+
+Normal System without & with Virtualization
+-------------------------------------------
+Normal System					
+	- App
+	- Host OS
+	- Hardware
+
+
+Virtualized System
+	- Guest OS
+	- VM (HyperVisor)
+	- Host OS
+	- Hardware
+
+
+Containerized System
+	- App1, App2, App3
+	- Docker
+	- Host OS
+	- Hardware	
+
+
+
 Docker Containers
 -----------------
+-> Containerization means simply creating a package of your software application with all the required configurations so that it can be shipped to other       
+   team to achieve portability, isolation, scalable.
+-> Docker is a platform that is used to run and manage containers.
 -> One of the famous architecture for application development is MicroServices.
--> MicroServices can be simpy defined as divinding a single large application into small independent units called as Services.
+-> MicroServices can be simply defined as dividing a single large application into small independent units called as Services.
 -> These services are managed and deployed individually and the services may be using different technologies and programming languages.
 -> It is very difficult for the deployment team to deploy this kind of applications as individual service is deployed with different configurations.
 -> To simplify this complex process of deployment Docker Containers came into picture.
@@ -145,6 +182,24 @@ Docker Containers
 -> AWS Fargate is also a Container Orchestrator Tool offered by AWS which is also called as Serverless ECS/EKS.
 -> No Free Tier is available for Kubernetes, ECS and Fargate.
 
+
+
+Components of Docker
+--------------------
+Docker Engine
+	- Responsible for creating and managing containers
+Containers
+	- To run our software
+Docker Image
+	- Light weight blue print file of your running container that can be shared easily to run in other machines
+Docker File
+	- Contains the data to guide how image is to be build
+Docker Hub
+	- Service to get and install all images like tomcat
+Volumes
+	- To store data
+Docker Compose
+	- To build multiple containers
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 AWS Serverless
@@ -194,7 +249,6 @@ Steps to Deploy Spring Boot App in AWS BeanStalk
 		- Source code origin: Upload Application -> Choose File -> Upload your created JAR file from Project's target folder -> Click on Next.
 		- Configure service access -> Service role: Use an existing service role
 		- Scroll Down -> Click Skip to review
-		- Click Create -> Wait for some time -> Your APP will be deployed and you will get a link to access.
-
+		- Submit -> Wait for some time -> Your APP will be deployed and you will get a link to access.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------

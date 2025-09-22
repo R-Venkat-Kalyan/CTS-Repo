@@ -26,3 +26,8 @@ Checked if the branch had any rules using the OOTB data page D_pzBranchContent.
 If empty → deleted the branch by calling the OOTB activity pxDeleteBranch.
 
 If not empty → skipped deletion and moved to the next branch.
+
+@LengthOfPageList(D_pzBranchContent[branchID:Param.BranchID].pxResults) == 0
+AND
+@(Pega-RULES:DateTime).DateTimeDifference(@CurrentDateTime(), Param.CreatedOn, "M") > 2
+

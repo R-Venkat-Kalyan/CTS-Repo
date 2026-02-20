@@ -1,0 +1,240 @@
+
+MASTER PROMPT — Nayana Closet Static Site (No DB, Email Orders)
+
+Role: You are an expert front‑end architect and e‑commerce UX engineer.
+Goal: Build a static, no-backend, no-database landing site for Nayana Closet (a women’s clothing brand) with a fully working cart, session persistence, email-only order flow, events video carousel, and testimonial gallery.
+
+1) Product & Business Use Case
+- Nayana Closet currently sells through Instagram DMs and word-of-mouth.
+- This site is a simple landing + catalog + email checkout (no online payments, no database).
+- Orders are placed via email; cart is temporary and cleared after submission.
+- Two-way call verification after order using a 4‑digit code:
+  • Customer says first 2 digits.
+  • Nayana says last 2 digits.
+  • Owner’s email shows only the last 2 digits (e.g., **31).
+  • Customer gets the full 4‑digit code in the UI and their email.
+
+2) Hard Requirements / Constraints
+- No database (all product data in a static products.json).
+- No backend server. Use Formspree for emailing orders (free tier).
+- Cart persisted for the session only (use sessionStorage).
+- Quantity fixed to 1 per item (no multi-qty for MVP).
+- Each product card must have a carousel showing 2–3 images + 1 short video, similar to Nike product pages.
+- Fixed prices displayed clearly on cards, with SKU codes (e.g., REG-001, OFF-004, CAS-010) for order clarity.
+- No online payment; clearly indicate “We will call you for payment & confirmation.”
+- Sections required:
+  1. Hero/About Nayana (her story + Instagram link)
+  2. Shop (Categories: Regular Wear, Office Wear, Casuals)
+  3. Events/Stalls (video carousel)
+  4. What Our Customers Say (testimonial gallery)
+  5. Contact (cool-looking email, Instagram button)
+  6. Footer with “No returns or exchanges” line and minimal privacy note
+- Accessibility: alt text, focus management, keyboard navigation, ARIA for carousels.
+- Performance: lazy-load media, WebP images, defer scripts.
+- SEO: meta tags, OpenGraph, clean semantic HTML.
+
+3) Tech Stack
+- HTML + Tailwind CSS + Vanilla JS
+- Swiper.js for media carousels (products + events)
+- Formspree for emails (no API key in client)
+- Hosting: Netlify/Vercel-ready static build
+
+4) Data Models (Static JSON Files)
+- products.json:
+{
+  "categories": ["Regular Wear", "Office Wear", "Casuals"],
+  "products": [
+    {
+      "id": "REG-001",
+      "title": "Blue Floral Cotton Kurti",
+      "category": "Regular Wear",
+      "price": 799,
+      "currency": "INR",
+      "fabric": "100% Cotton",
+      "media": [
+        { "type": "image", "src": "/media/REG-001-1.webp", "alt": "Front view" },
+        { "type": "image", "src": "/media/REG-001-2.webp", "alt": "Back view" },
+        { "type": "video", "src": "/media/REG-001.mp4", "poster": "/media/REG-001-cover.webp" }
+      ],
+      "description": "Breathable daily wear kurti for comfort and style."
+    }
+  ]
+}
+
+- events.json:
+{
+  "events": [
+    { "title": "Navratri Pop-up • Oct 2025", "video": "/events/nav25.mp4", "poster": "/events/nav25.webp" },
+    { "title": "City Mall Stall • Dec 2025", "video": "/events/dec25.mp4", "poster": "/events/dec25.webp" }
+  ]
+}
+
+- testimonials.json:
+{
+  "testimonials": [
+    { "name": "Ananya", "quote": "Loved the fabric and fit. Super comfy!", "location": "Kolkata" },
+    { "name": "Meera", "quote": "Swift delivery and great quality!", "location": "Hyderabad" }
+  ]
+}
+
+5) Pages/Sections & UX
+- Header: Brand logo (text or image), Menu (About, Shop, Events, Testimonials, Contact), Cart icon with badge.
+- Hero/About: Short brand story + Nayana’s portrait + “Shop Now” button + Instagram button.
+- Shop:
+  • Category tabs: Regular Wear / Office Wear / Casuals
+  • Product grid:
+    – Nike-style carousel: 2–3 images + 1 video (muted, loop, click-to-play, swipe).
+    – Title, Fabric, Price, SKU.
+    – Button: Add to Cart (toggles to Remove when in cart).
+- Cart Drawer:
+  • Slides from right; shows items (title, SKU, price), subtotal, remove option, Checkout.
+  • Qty is fixed to 1, no quantity control.
+- Checkout Page:
+  • Form fields: Name, Email, Phone (India format), Address (optional), Notes, Consent checkbox.
+  • On submit:
+    – Generate Order ID: NC-YYYYMMDD-HHMMSS.
+    – Generate 4-digit code (1000–9999).
+    – Send order via Formspree: owner gets full order + masked code (**31); customer gets confirmation + full code.
+    – On success: Thank You page with Order ID + full code; clear session cart.
+- Events/Stalls: Swiper video carousel with captions (title + optional date/place).
+- Testimonials: Cards with quote + name (+ optional avatar).
+- Contact: Stylish email card (e.g., hello@nayanacloset.com) and Instagram button.
+- Footer:
+  • “All sales final. No returns or exchanges.”
+  • “We use your contact details only to process & update your order.”
+  • Social links.
+
+6) Cart & Storage
+- Use sessionStorage for cart object keyed by product id:
+{
+  "REG-001": { "id": "REG-001", "title": "Blue Floral Cotton Kurti", "price": 799, "qty": 1 }
+}
+- Functions: addToCart(id), removeFromCart(id), getCart(), saveCart(), getSubtotal().
+- Disable “Add” button when item is already in cart (toggle to “Remove”).
+
+7) Email Flow (Formspree — No Backend)
+- Preferred: Approach A (simple) — One Formspree endpoint with owner recipient + auto-responder to customer.
+  • Owner email content includes last 2 digits only; customer email includes full 4‑digit code.
+- Alternative: Approach B — Two submissions programmatically: (1) owner payload (masked code), (2) customer payload (full code).
+- Payload fields (POST as JSON to Formspree):
+{
+  "orderId": "NC-20260201-093415",
+  "validationCode": "4831",
+  "validationMaskForOwner": "**31",
+  "customer": { "name": "Priya Sharma", "email": "priya@example.com", "phone": "+91-98xxxxxx12", "address": "optional" },
+  "items": [
+    {"sku":"REG-001","title":"Blue Floral Cotton Kurti","qty":1,"price":799}
+  ],
+  "subtotal": 799,
+  "notes": "Please pack as a gift."
+}
+- Owner Email (HTML-ish text) should include:
+  • Subject: Nayana Closet – New Order #NC-20260201-093415
+  • Customer details + itemized list + subtotal
+  • Verification protocol note: “Ask for first 2 digits; share last 2 (code mask: **31).”
+- Customer Email should include:
+  • Subject: Thanks for your order – Nayana Closet #NC-20260201-093415
+  • Full 4‑digit code and instruction.
+
+8) Visual & Brand
+- Boutique, elegant feel. Suggested palette:
+  • Soft blush #F8E9EC, Warm beige #F5F1EA, Charcoal #2D2D2D, Accent rose #D97D7D.
+- Typography: Headings (Playfair Display or Cormorant), Body (Inter or Nunito).
+- Smooth hover states, focus-visible outlines, lazy-loaded images, responsive layout.
+
+9) Folder Structure (Static)
+/public
+  /media
+  /events
+  /testimonials
+  /icons
+  favicon.ico
+/index.html
+/styles.css  (Tailwind build or CDN)
+/main.js
+/products.json
+/events.json
+/testimonials.json
+
+10) Core JS (Pseudo-Implementation)
+- Cart: initCartFromSession(), renderCartBadge(), renderCartDrawer()
+- Shop: loadProducts(), filterByCategory(), renderProductCard(product); Swiper mixed media (image+video)
+- Checkout: validateForm(), generateOrderId(), generate4DigitCode(), composeEmailPayloads(), submitToFormspree(...); on success → clearCart() + Thank You with code
+
+11) Non-Functional
+- Accessibility: aria-labels, keyboardable carousels, alt text, proper landmarks.
+- SEO: Title/description, OpenGraph, structured data basics if possible.
+- Performance: WebP, lazy loading, defer scripts, minimal JS.
+- Security: No API keys in client. Use Formspree endpoints only.
+- Empty states: Friendly messages for empty categories/cart.
+
+12) Configurable Placeholders (Replace before build)
+- {{OWNER_EMAIL}} – where orders go (Formspree recipient)
+- {{DISPLAY_CONTACT_EMAIL}} – shown on site (can be same as owner)
+- {{INSTAGRAM_HANDLE}} – e.g., @nayanacloset
+- {{BRAND_NAME}} – “Nayana Closet”
+- {{PRIMARY_COLOR}}, {{ACCENT_COLOR}} – (optional to override palette)
+
+13) Expected Outputs
+- A fully working static site with:
+  • Nike-like product media carousels (images + 1 video)
+  • Category filter (Regular/Office/Casuals)
+  • Session cart (add/remove, qty=1)
+  • Checkout form + Formspree email flow
+  • Order success page with Order ID & 4‑digit code
+  • Events video carousel + Testimonials section
+  • Contact & Footer (no returns/exchanges)
+- All code files ready to deploy to Netlify/Vercel.
+
+Deliverables:
+1) index.html, styles.css (or Tailwind via CDN), main.js
+2) products.json, events.json, testimonials.json
+3) Asset placeholders and instructions
+4) README with setup (Formspree endpoint, media placement, deploy steps)
+
+—
+Implementation Plan (Checklist)
+1) Scaffold: Header, sections, footer; Tailwind via CDN; Swiper via CDN.
+2) Products: Load products.json; render tabs + grid + Nike-style carousel per card.
+3) Cart: Session-based add/remove, badge, drawer with subtotal; qty fixed to 1.
+4) Checkout: Build form + validations (email, Indian phone format, consent).
+5) Order Flow: Order ID + 4-digit code; Formspree submission; Thank You; clear cart.
+6) Events: Load events.json, build Swiper video carousel.
+7) Testimonials: Load testimonials.json, render quote cards.
+8) UX Polish: Focus states, skeleton loaders, empty states, error toasts.
+9) SEO/Meta: Title, description, OpenGraph, favicon, social links.
+10) Deploy: Netlify/Vercel; set Formspree endpoint.
+
+Acceptance Tests
+Cart & Shop
+- [ ] Add item adds it once and toggles button to Remove.
+- [ ] Cart persists while tab is open; clears if browser/tab closed.
+- [ ] Subtotal matches sum of item prices.
+- [ ] Category filters correctly show/hide products.
+- [ ] Product card carousel shows 2–3 images and 1 playable video.
+
+Checkout & Email
+- [ ] Form blocks submit without name/email/phone/consent.
+- [ ] Phone validation works for Indian format (len 10; optional +91).
+- [ ] On submit, Order ID format is NC-YYYYMMDD-HHMMSS.
+- [ ] Generated code is 4 digits (1000–9999).
+- [ ] Owner email contains only last 2 digits (mask like **31) + call protocol note.
+- [ ] Customer email contains full 4‑digit code and call instructions.
+- [ ] Thank You page shows Order ID + full code.
+- [ ] Cart clears after successful email.
+
+Events & Testimonials
+- [ ] Events carousel plays muted looping videos with posters and titles.
+- [ ] Testimonials render from JSON.
+
+A11y & Performance
+- [ ] All images have descriptive alt.
+- [ ] Carousels are keyboard-navigable; focus is visible.
+- [ ] Images lazy-load; videos use posters; site loads fast on mobile.
+
+Notes to Implementer
+- Assign SKUs by category prefix (REG-, OFF-, CAS-) with 3-digit sequence.
+- Generate Order IDs using local time; ensure uniqueness per second.
+- For Swiper mixed media: pause video when slide changes; play only visible slide.
+- For Formspree: set owner recipient in dashboard; enable auto-responder to customer.
+- Show a clear note on checkout: “We will call you for payment & confirmation. Keep your 4-digit verification code handy.”

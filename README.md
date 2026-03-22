@@ -25,6 +25,10 @@ Checked if the branch had any rules using the OOTB data page D_pzBranchContent.
 
 If empty → deleted the branch by calling the OOTB activity pxDeleteBranch.
 
+
+https://assessment.hackerearth.com/challenges/new/hiring/barclays-india-hiring-hackathon-2026/?utm_source=he_social&utm_medium=LinkedIn&utm_campaign=barclays-india-hiring-hackathon-2026
+
+
 If not empty → skipped deletion and moved to the next branch.
 
 @LengthOfPageList(D_pzBranchContent[branchID:Param.BranchID].pxResults) == 0
